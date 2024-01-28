@@ -46,3 +46,10 @@ exports.getAll = async (search, from, to) => {
 };
 
 exports.getSingleCube = (id) => Cube.findById(id);
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+  const cube = await this.getSingleCube(cubeId);
+  cube.accessories.push(accessoryId);
+
+  return cube.save();
+}
