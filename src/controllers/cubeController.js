@@ -28,7 +28,6 @@ router.get("/:cubeId/details", (req, res) => {
   }
 
   res.render("details", { ...cube });
-  console.log(cube);
 });
 
 module.exports = router;
