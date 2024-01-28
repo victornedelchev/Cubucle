@@ -5,3 +5,5 @@ exports.create = async (accessoryData) => {
 
     return Accessory;
 };
+
+exports.getAll = () => Accessory.find();
