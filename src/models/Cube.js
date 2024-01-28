@@ -12,7 +12,11 @@ const cubeSchema = mongoose.Schema({
     },
     difficultyLevel: {
         type: Number
-    }
+    },
+    accessories: [{
+        type: mongoose.Types.ObjectId, // from MongoDB
+        ref: "Accessory" // The name of the model
+    }]
 });
 
 const Cube = mongoose.model('Cube', cubeSchema);
