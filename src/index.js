@@ -1,9 +1,21 @@
 // Imports
 const express = require('express');
+
 const handlebarsConfig = require('./config/handlebarsConfig');
 const expressConfig = require('./config/expressConfig');
-const { PORT } = require('./constants');
+const dbConnect = require('./config/dbConfig');
+
+const {
+    PORT
+} = require('./constants');
 const routes = require('./router');
+
+// Connecting to the database
+dbConnect()
+    .then(() => {
+        console.log('Successfully connected to DB');
+    })
+    .catch((err) => console.log(`Error while connecting with DB: ${err}`));
 
 // Local variables
 const app = express();
