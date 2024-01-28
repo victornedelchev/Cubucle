@@ -1,2 +1,2 @@
 # Cubucle
-JS Backend Workshop @SoftUni
+JS Backend Workshop with MongoDB and Mongoose @SoftUni
