@@ -7,3 +7,8 @@ exports.create = async (accessoryData) => {
 };
 
 exports.getAll = () => Accessory.find();
+
+exports.getWithoutOwned = (accessoryId) => {
+    // $nin => NOT IN
+    return Accessory.find({_id: {$nin: accessoryId } });
+};
