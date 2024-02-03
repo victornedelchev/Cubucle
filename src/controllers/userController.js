@@ -17,10 +17,10 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    // find the user
     const { username, password } = req.body;
-    const user = await userService.login(username, password);
-    // compare password
+    const token = await userService.login(username, password);
+   
+    res.cookie('auth', token, { httpOnly: true });
 
     res.redirect('/');
 });
