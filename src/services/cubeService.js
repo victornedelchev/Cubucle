@@ -40,4 +40,6 @@ exports.attachAccessory = async (cubeId, accessoryId) => {
   cube.accessories.push(accessoryId);
 
   return cube.save();
-}
+};
+
+exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
