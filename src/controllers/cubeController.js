@@ -38,8 +38,11 @@ router.get("/:cubeId/details", async (req, res) => {
     return;
   }
 
+  const isOwner = cube.owner?.toString() === req.user._id;
+
   res.render("cube/details", {
-    ...cube
+    ...cube,
+    isOwner,
   });
 });
 
@@ -52,6 +55,7 @@ router.get("/:cubeId/attach-accessory", async (req, res) => {
   const accessoryId = cube.accessories 
   ? cube.accessories.map((a) => (a._id))
   : [];
+
 
   const accessories = await accessoryService.getWithoutOwned(accessoryId).lean();
   
