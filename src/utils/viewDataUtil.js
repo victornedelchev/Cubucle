@@ -10,11 +10,11 @@ exports.difficultyLevelOptionsViewData = (difficultyLevel) => {
 
     const options = title.map((title, index) => {
         const value = index + 1;
-        
+
         return {
             title: `${value} - ${title}`,
             value: value,
-            selected: Number(difficultyLevel) === value,
+            selected: Number(difficultyLevel) === value ? 'selected' : '',
         };
     });
 

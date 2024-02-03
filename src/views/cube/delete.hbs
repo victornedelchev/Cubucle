@@ -11,7 +11,7 @@
             <label for="difficulty">Difficulty</label>
             <select id="difficulty" name="difficultyLevel" value="{{cube.difficultyLevel}}" disabled="true" />
             {{#each options}}
-            <option value="{{value}}" {{#if selected}}selected{{/if}}>{{title}}</option>
+            <option value="{{value}}" {{selected}}>{{title}}</option>
             {{/each}}
             </select>
             <input type="submit" value="Delete">
