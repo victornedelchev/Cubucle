@@ -12,7 +12,7 @@ router.post("/create", async (req, res) => {
     name,
     description,
     imageUrl,
-    difficultyLevel
+    difficultyLevel,
   } = req.body;
 
   await cubeService.create({
@@ -20,6 +20,7 @@ router.post("/create", async (req, res) => {
     description,
     imageUrl,
     difficultyLevel: Number(difficultyLevel),
+    owner: req.user,
   });
 
   res.redirect("/");
