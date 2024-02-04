@@ -83,7 +83,7 @@ router.get('/:cubeId/edit', isAuth, async (req, res) => {
   const { cubeId } = req.params;
   const cube = await cubeService.getSingleCube(cubeId).lean();
 
-  // This should be implemented everywhere for safeness! 
+  //! This should be implemented everywhere for safeness! 
   if (cube.owner?.toString() !== req.user._id) {
     return res.redirect('/404');
   }
