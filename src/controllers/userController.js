@@ -7,9 +7,17 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
     const { username, password, repeatPassword } = req.body;
-    await userService.register({ username, password, repeatPassword });
+    try {
+        await userService.register({ username, password, repeatPassword });
+        res.redirect('/users/login');
+    } catch (error) {
+        console.log(error.errors);
+        const { message } = error;
+        const errorMessages = message.split(',');
+        console.log({ errorMessages });
 
-    res.redirect('/users/login');
+        res.status(404).render('user/register', { errorMessages });
+    }
 });
 
 router.get('/login', (req, res) => {
@@ -18,11 +26,18 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const token = await userService.login(username, password);
-   
-    res.cookie('auth', token, { httpOnly: true });
+    try {
+        const token = await userService.login(username, password);
+        res.cookie('auth', token, { httpOnly: true });
+    
+        res.redirect('/');
+    } catch (error) {
+        const { message } = error;
+        const errorMessages = message.split(',');
+        console.log({ errorMessages });
 
-    res.redirect('/');
+        res.status(404).render('user/login', { errorMessages });
+    }
 });
 
 router.get('/logout', (req, res) => {
